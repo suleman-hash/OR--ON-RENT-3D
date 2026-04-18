@@ -1,0 +1,2185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>OR — On Rent | Premium Rental Marketplace</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════════
+   OR — ON RENT  |  3D LUXURY THEME
+   Obsidian · Molten Gold · Crystal Glass
+══════════════════════════════════════════ */
+:root {
+  --void:       #04030a;
+  --deep:       #080614;
+  --obsidian:   #0e0b1f;
+  --surface:    #130f26;
+  --glass:      rgba(255,255,255,0.04);
+  --glass-b:    rgba(255,255,255,0.08);
+  --gold:       #c9963c;
+  --gold-lt:    #f0c060;
+  --gold-glow:  rgba(201,150,60,0.25);
+  --gold-shine: linear-gradient(135deg,#f0c060 0%,#c9963c 40%,#8b6520 70%,#f0c060 100%);
+  --platinum:   #e8e4f0;
+  --silver:     #b0a8c8;
+  --mist:       #7068a0;
+  --rose-gold:  #c97060;
+  --teal-deep:  #1a4a5a;
+  --text:       #ede8f8;
+  --shadow-gold: 0 0 40px rgba(201,150,60,0.3);
+  --shadow-deep: 0 40px 80px rgba(0,0,0,0.8);
+  --r:          16px;
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--void);
+  color: var(--text);
+  font-family: 'Raleway', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CUSTOM CURSOR ── */
+#cursor {
+  position: fixed; width: 12px; height: 12px;
+  background: var(--gold); border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: width .2s, height .2s, background .2s;
+  box-shadow: 0 0 16px var(--gold), 0 0 40px var(--gold-glow);
+  mix-blend-mode: screen;
+}
+#cursor-ring {
+  position: fixed; width: 36px; height: 36px;
+  border: 1px solid rgba(201,150,60,0.5);
+  border-radius: 50%; pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: all .12s ease;
+}
+body:hover #cursor { width: 14px; height: 14px; }
+
+/* ── PARTICLE CANVAS ── */
+#particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+/* ── NOISE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; opacity: 0.6;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 56px;
+  background: rgba(4,3,10,0.7);
+  backdrop-filter: blur(28px) saturate(180%);
+  border-bottom: 1px solid rgba(201,150,60,0.15);
+  transition: padding .4s;
+}
+nav.scrolled { padding: 12px 56px; }
+.nav-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem; font-weight: 900;
+  letter-spacing: 6px;
+  background: var(--gold-shine);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+  position: relative;
+}
+.nav-logo::after {
+  content: 'ON RENT';
+  display: block;
+  font-size: 0.45rem; font-weight: 600;
+  letter-spacing: 8px;
+  background: var(--gold-shine);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-top: -4px;
+}
+.nav-links {
+  display: flex; gap: 36px;
+}
+.nav-links a {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--silver); text-decoration: none;
+  position: relative; transition: color .3s;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; right: 100%;
+  height: 1px; background: var(--gold);
+  transition: right .35s ease;
+}
+.nav-links a:hover { color: var(--gold-lt); }
+.nav-links a:hover::after { right: 0; }
+.nav-actions { display: flex; gap: 12px; align-items: center; }
+.btn-glass {
+  padding: 9px 22px;
+  background: var(--glass-b);
+  border: 1px solid rgba(201,150,60,0.3);
+  border-radius: 40px;
+  color: var(--gold-lt);
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  cursor: none; text-decoration: none;
+  backdrop-filter: blur(10px);
+  transition: all .3s;
+}
+.btn-glass:hover {
+  background: rgba(201,150,60,0.15);
+  border-color: var(--gold);
+  box-shadow: 0 0 20px rgba(201,150,60,0.2), inset 0 0 20px rgba(201,150,60,0.05);
+}
+.btn-gold {
+  padding: 10px 26px;
+  background: var(--gold-shine);
+  border: none; border-radius: 40px;
+  color: #1a0e00;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  cursor: none;
+  box-shadow: 0 4px 24px rgba(201,150,60,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+  transition: all .3s;
+  position: relative; overflow: hidden;
+}
+.btn-gold::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.25) 50%, transparent 60%);
+  transform: translateX(-100%); transition: transform .5s;
+}
+.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 36px rgba(201,150,60,0.6); }
+.btn-gold:hover::before { transform: translateX(100%); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center;
+  padding: 140px 48px 80px;
+  position: relative; z-index: 2;
+  overflow: hidden;
+}
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: orbFloat 8s ease-in-out infinite;
+}
+.hero-orb-1 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(201,150,60,0.18) 0%, transparent 70%); top: -150px; right: -100px; animation-delay: 0s; }
+.hero-orb-2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(100,60,180,0.15) 0%, transparent 70%); bottom: -100px; left: -50px; animation-delay: -3s; }
+.hero-orb-3 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(201,112,96,0.1) 0%, transparent 70%); top: 40%; left: 20%; animation-delay: -6s; }
+
+@keyframes orbFloat {
+  0%,100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: 'Cinzel', serif; font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 6px; text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(201,150,60,0.08);
+  border: 1px solid rgba(201,150,60,0.25);
+  padding: 8px 24px; border-radius: 40px;
+  margin-bottom: 40px;
+  animation: fadeUp .8s ease both;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: '◆'; font-size: 0.5rem; color: var(--gold-lt);
+}
+
+.hero-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(4rem, 11vw, 10rem);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: 4px;
+  margin-bottom: 32px;
+  animation: fadeUp .9s .1s ease both;
+  position: relative;
+}
+.hero-title .or-text {
+  display: block;
+  background: var(--gold-shine);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 60px rgba(201,150,60,0.5));
+}
+.hero-title .rent-text {
+  display: block;
+  color: var(--platinum);
+  font-weight: 300;
+  font-size: 0.35em;
+  letter-spacing: 18px;
+  margin-top: 8px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.hero-italic {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-weight: 300;
+  color: var(--silver);
+  letter-spacing: 2px;
+  margin-bottom: 52px;
+  animation: fadeUp .9s .2s ease both;
+}
+.hero-italic em { color: var(--gold-lt); font-style: normal; }
+
+.hero-actions {
+  display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+  animation: fadeUp .9s .3s ease both;
+}
+.btn-hero-primary {
+  padding: 18px 52px;
+  background: var(--gold-shine);
+  border: none; border-radius: 60px;
+  color: #0e0800;
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  cursor: none; text-decoration: none;
+  box-shadow: 0 8px 40px rgba(201,150,60,0.5), 0 0 0 0 rgba(201,150,60,0.3);
+  transition: all .4s;
+  position: relative; overflow: hidden;
+  animation: goldPulse 3s ease infinite;
+}
+.btn-hero-primary::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%);
+  transform: translateX(-150%); transition: transform .6s;
+}
+.btn-hero-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 16px 60px rgba(201,150,60,0.7); }
+.btn-hero-primary:hover::before { transform: translateX(150%); }
+
+@keyframes goldPulse {
+  0%,100% { box-shadow: 0 8px 40px rgba(201,150,60,0.5), 0 0 0 0 rgba(201,150,60,0); }
+  50%      { box-shadow: 0 8px 40px rgba(201,150,60,0.5), 0 0 0 12px rgba(201,150,60,0); }
+}
+
+.btn-hero-outline {
+  padding: 18px 52px;
+  background: transparent;
+  border: 1px solid rgba(201,150,60,0.4);
+  border-radius: 60px;
+  color: var(--gold-lt);
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase;
+  cursor: none; text-decoration: none;
+  backdrop-filter: blur(10px);
+  transition: all .4s;
+}
+.btn-hero-outline:hover {
+  background: rgba(201,150,60,0.1);
+  border-color: var(--gold-lt);
+  transform: translateY(-3px);
+}
+
+/* HERO STATS */
+.hero-stats {
+  display: flex; gap: 0;
+  margin-top: 80px;
+  background: var(--glass);
+  border: 1px solid rgba(201,150,60,0.12);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+  animation: fadeUp .9s .5s ease both;
+}
+.hero-stat {
+  padding: 28px 40px;
+  border-right: 1px solid rgba(201,150,60,0.1);
+  text-align: center;
+  flex: 1;
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-num {
+  font-family: 'Cinzel', serif;
+  font-size: 2.2rem; font-weight: 900;
+  background: var(--gold-shine);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: 0.62rem; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--mist);
+  margin-top: 6px; font-weight: 600;
+}
+
+/* ── MARQUEE ── */
+.marquee-wrap {
+  position: relative; z-index: 2;
+  overflow: hidden; padding: 0;
+  background: linear-gradient(90deg, rgba(201,150,60,0.05) 0%, rgba(201,150,60,0.12) 50%, rgba(201,150,60,0.05) 100%);
+  border-top: 1px solid rgba(201,150,60,0.15);
+  border-bottom: 1px solid rgba(201,150,60,0.15);
+}
+.marquee-track {
+  display: flex; align-items: center;
+  white-space: nowrap;
+  animation: marquee 30s linear infinite;
+  padding: 16px 0;
+}
+.marquee-item {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Cinzel', serif; font-size: 0.7rem;
+  font-weight: 600; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold); padding: 0 32px;
+}
+.marquee-item .dot { color: rgba(201,150,60,0.3); font-size: 1rem; }
+
+/* ── SECTION ── */
+.section {
+  padding: 100px 56px;
+  position: relative; z-index: 2;
+}
+.section-inner-bg { background: var(--deep); }
+.section-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'Cinzel', serif; font-size: 0.6rem; font-weight: 600;
+  letter-spacing: 5px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 16px;
+}
+.section-eyebrow::before { content: ''; display: inline-block; width: 30px; height: 1px; background: var(--gold); }
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 700; line-height: 1.1;
+  color: var(--platinum);
+  margin-bottom: 16px;
+}
+.section-title span {
+  background: var(--gold-shine);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem; font-weight: 300;
+  color: var(--silver); font-style: italic;
+  max-width: 480px; line-height: 1.8;
+}
+.section-header-row {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 64px; padding-bottom: 32px;
+  border-bottom: 1px solid rgba(201,150,60,0.1);
+  gap: 40px; flex-wrap: wrap;
+}
+.section-num {
+  font-family: 'Cinzel', serif;
+  font-size: 6rem; font-weight: 900;
+  color: rgba(201,150,60,0.06);
+  line-height: 1; user-select: none;
+  flex-shrink: 0;
+}
+
+/* ── 3D SERVICE CARDS ── */
+.labour-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+.service-3d {
+  perspective: 1000px;
+  cursor: none;
+}
+.service-3d-inner {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+  border: 1px solid rgba(201,150,60,0.15);
+  border-radius: 20px;
+  padding: 32px 28px;
+  overflow: hidden;
+  transition: transform .5s cubic-bezier(.23,1,.32,1), box-shadow .5s, border-color .3s;
+  transform-style: preserve-3d;
+  backdrop-filter: blur(20px);
+}
+.service-3d-inner::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(201,150,60,0.08) 0%, transparent 60%);
+  opacity: 0; transition: opacity .4s;
+  border-radius: 20px;
+}
+.service-3d-inner::after {
+  content: '';
+  position: absolute; top: -1px; left: 10%; right: 10%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,150,60,0.6), transparent);
+  opacity: 0; transition: opacity .4s;
+}
+.service-3d:hover .service-3d-inner {
+  transform: rotateX(-4deg) rotateY(3deg) translateY(-8px) translateZ(20px);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 40px rgba(201,150,60,0.15), inset 0 1px 0 rgba(255,255,255,0.1);
+  border-color: rgba(201,150,60,0.4);
+}
+.service-3d:hover .service-3d-inner::before { opacity: 1; }
+.service-3d:hover .service-3d-inner::after { opacity: 1; }
+
+/* 3D SVG ICONS */
+.service-icon-wrap {
+  width: 72px; height: 72px;
+  margin-bottom: 22px;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.service-icon-bg {
+  position: absolute; inset: 0;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(201,150,60,0.2) 0%, rgba(201,150,60,0.06) 100%);
+  border: 1px solid rgba(201,150,60,0.2);
+  transition: transform .4s, box-shadow .4s;
+}
+.service-3d:hover .service-icon-bg {
+  transform: translateZ(15px);
+  box-shadow: 0 8px 30px rgba(201,150,60,0.25);
+}
+.service-icon-svg {
+  width: 36px; height: 36px;
+  position: relative; z-index: 1;
+  filter: drop-shadow(0 0 8px rgba(201,150,60,0.4));
+  transition: transform .4s, filter .4s;
+}
+.service-3d:hover .service-icon-svg {
+  transform: translateZ(25px) scale(1.1);
+  filter: drop-shadow(0 4px 16px rgba(201,150,60,0.7));
+}
+
+.card-number {
+  position: absolute; top: 22px; right: 24px;
+  font-family: 'Cinzel', serif; font-size: 2.5rem; font-weight: 900;
+  color: rgba(201,150,60,0.06); line-height: 1;
+  transition: color .3s;
+}
+.service-3d:hover .card-number { color: rgba(201,150,60,0.1); }
+
+.card-title-3d {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem; font-weight: 700;
+  color: var(--platinum);
+  margin-bottom: 10px; letter-spacing: 0.5px;
+}
+.card-desc-3d {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem; font-weight: 400;
+  color: var(--silver); line-height: 1.7;
+  margin-bottom: 18px;
+}
+.card-chips {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-top: 16px;
+}
+.chip {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 30px;
+  border: 1px solid rgba(201,150,60,0.25);
+  background: rgba(201,150,60,0.08);
+  color: var(--gold);
+  transition: all .25s;
+}
+.chip:hover { background: rgba(201,150,60,0.18); border-color: var(--gold); }
+.chip.silver {
+  border-color: rgba(176,168,200,0.25);
+  background: rgba(176,168,200,0.06);
+  color: var(--silver);
+}
+.chip.rose {
+  border-color: rgba(201,112,96,0.3);
+  background: rgba(201,112,96,0.08);
+  color: var(--rose-gold);
+}
+
+.card-book-btn-3d {
+  width: 100%; margin-top: 20px;
+  padding: 11px;
+  background: transparent;
+  border: 1px solid rgba(201,150,60,0.3);
+  border-radius: 10px;
+  color: var(--gold);
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  cursor: none; transition: all .3s;
+  position: relative; overflow: hidden;
+}
+.card-book-btn-3d::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--gold-shine);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .4s cubic-bezier(.23,1,.32,1);
+}
+.card-book-btn-3d:hover { color: #0e0800; border-color: var(--gold); }
+.card-book-btn-3d:hover::before { transform: scaleX(1); }
+.card-book-btn-3d span { position: relative; z-index: 1; }
+
+/* ── VEHICLE SECTION ── */
+.vehicle-showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 28px;
+}
+.vehicle-3d-card {
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(201,150,60,0.12);
+  background: linear-gradient(160deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.3) 100%);
+  backdrop-filter: blur(20px);
+  transition: all .5s cubic-bezier(.23,1,.32,1);
+  cursor: none;
+  position: relative;
+}
+.vehicle-3d-card::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(135deg, rgba(201,150,60,0.06) 0%, transparent 50%);
+  opacity: 0; transition: opacity .4s;
+}
+.vehicle-3d-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 60px rgba(201,150,60,0.15);
+  border-color: rgba(201,150,60,0.35);
+}
+.vehicle-3d-card:hover::before { opacity: 1; }
+
+.vehicle-thumb-3d {
+  height: 180px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.vehicle-thumb-svg {
+  width: 120px; height: 120px;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.8));
+  transition: transform .5s cubic-bezier(.23,1,.32,1), filter .5s;
+}
+.vehicle-3d-card:hover .vehicle-thumb-svg {
+  transform: translateY(-8px) scale(1.08);
+  filter: drop-shadow(0 20px 50px rgba(201,150,60,0.4));
+}
+.vehicle-thumb-glow {
+  position: absolute; bottom: 10px; left: 50%;
+  transform: translateX(-50%);
+  width: 80%; height: 20px;
+  background: radial-gradient(ellipse, rgba(201,150,60,0.3) 0%, transparent 70%);
+  filter: blur(8px);
+  transition: width .5s, opacity .5s;
+}
+.vehicle-3d-card:hover .vehicle-thumb-glow { width: 100%; }
+
+.vehicle-body-3d { padding: 24px 26px 26px; position: relative; z-index: 1; }
+.vehicle-label {
+  font-family: 'Cinzel', serif; font-size: 0.6rem;
+  font-weight: 600; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 6px;
+}
+.vehicle-name-3d {
+  font-family: 'Cinzel', serif; font-size: 1.25rem;
+  font-weight: 700; color: var(--platinum); margin-bottom: 10px;
+}
+.vehicle-desc-3d {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem; color: var(--silver);
+  line-height: 1.7; margin-bottom: 16px;
+}
+.vehicle-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.price-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(201,150,60,0.1);
+  border: 1px solid rgba(201,150,60,0.25);
+  border-radius: 8px; padding: 6px 14px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.7rem; font-weight: 700;
+  color: var(--gold); letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+.v-book-btn {
+  width: 100%; padding: 13px;
+  background: linear-gradient(135deg, rgba(201,150,60,0.15) 0%, rgba(201,150,60,0.05) 100%);
+  border: 1px solid rgba(201,150,60,0.3);
+  border-radius: 10px;
+  color: var(--gold-lt);
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  cursor: none; transition: all .35s;
+}
+.v-book-btn:hover {
+  background: var(--gold-shine);
+  color: #0e0800;
+  border-color: var(--gold);
+  box-shadow: 0 8px 30px rgba(201,150,60,0.4);
+}
+
+/* ── MARRIAGE SECTION ── */
+.marriage-bg {
+  background: linear-gradient(180deg, var(--void) 0%, #0d0820 50%, var(--void) 100%);
+}
+.marriage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 22px;
+}
+.marriage-card-3d {
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(201,112,96,0.06) 0%, rgba(255,255,255,0.02) 100%);
+  border: 1px solid rgba(201,112,96,0.12);
+  overflow: hidden;
+  transition: all .5s cubic-bezier(.23,1,.32,1);
+  cursor: none; position: relative;
+}
+.marriage-card-3d::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--rose-gold), var(--gold), var(--rose-gold), transparent);
+  opacity: 0; transition: opacity .4s;
+}
+.marriage-card-3d:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 50px rgba(201,112,96,0.12);
+  border-color: rgba(201,112,96,0.3);
+}
+.marriage-card-3d:hover::before { opacity: 1; }
+.m-icon-area {
+  height: 130px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.m-icon-3d {
+  width: 80px; height: 80px;
+  filter: drop-shadow(0 8px 24px rgba(201,112,96,0.4));
+  transition: transform .5s, filter .5s;
+}
+.marriage-card-3d:hover .m-icon-3d {
+  transform: translateY(-6px) scale(1.1);
+  filter: drop-shadow(0 16px 40px rgba(201,150,60,0.5));
+}
+.m-body-3d { padding: 20px 24px 24px; }
+.m-label-3d {
+  font-family: 'Cinzel', serif; font-size: 0.58rem;
+  font-weight: 600; letter-spacing: 4px;
+  color: var(--rose-gold); margin-bottom: 6px;
+}
+.m-name-3d {
+  font-family: 'Cinzel', serif; font-size: 1.05rem;
+  font-weight: 700; color: var(--platinum); margin-bottom: 10px;
+}
+.m-desc-3d {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.92rem; color: var(--silver); line-height: 1.7; margin-bottom: 14px;
+}
+.m-book-btn-3d {
+  width: 100%; padding: 11px;
+  background: transparent;
+  border: 1px solid rgba(201,112,96,0.3);
+  border-radius: 10px;
+  color: var(--rose-gold);
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  cursor: none; transition: all .35s; position: relative; overflow: hidden;
+}
+.m-book-btn-3d::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--rose-gold), var(--gold));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .4s cubic-bezier(.23,1,.32,1);
+}
+.m-book-btn-3d:hover { color: #1a0808; border-color: var(--rose-gold); }
+.m-book-btn-3d:hover::before { transform: scaleX(1); }
+.m-book-btn-3d span { position: relative; z-index: 1; }
+
+/* ── LISTINGS BROWSE ── */
+.listings-bg { background: var(--surface); }
+.filter-row {
+  display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px;
+}
+.filter-pill {
+  padding: 10px 24px;
+  border-radius: 40px;
+  background: var(--glass);
+  border: 1px solid rgba(201,150,60,0.15);
+  color: var(--silver);
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  cursor: none; transition: all .3s;
+  backdrop-filter: blur(10px);
+}
+.filter-pill:hover, .filter-pill.active {
+  background: rgba(201,150,60,0.15);
+  border-color: var(--gold);
+  color: var(--gold-lt);
+  box-shadow: 0 4px 20px rgba(201,150,60,0.15);
+}
+.listings-grid-3d {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 22px;
+}
+.listing-3d {
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.2) 100%);
+  border: 1px solid rgba(201,150,60,0.1);
+  overflow: hidden;
+  transition: all .4s cubic-bezier(.23,1,.32,1);
+  cursor: none; backdrop-filter: blur(16px);
+}
+.listing-3d:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 40px rgba(201,150,60,0.1);
+  border-color: rgba(201,150,60,0.3);
+}
+.listing-thumb-3d {
+  height: 160px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, rgba(201,150,60,0.05) 0%, rgba(0,0,0,0.3) 100%);
+}
+.listing-thumb-emoji { font-size: 4rem; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.8)); }
+.listing-body-3d { padding: 18px 20px; }
+.listing-cat-3d {
+  font-family: 'Cinzel', serif; font-size: 0.55rem;
+  font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 6px;
+}
+.listing-name-3d {
+  font-family: 'Raleway', sans-serif; font-weight: 700;
+  font-size: 0.95rem; color: var(--platinum); margin-bottom: 6px;
+}
+.listing-loc-3d { font-size: 0.75rem; color: var(--mist); margin-bottom: 12px; }
+.listing-price-3d {
+  font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight: 900;
+  background: var(--gold-shine);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.listing-footer-3d {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 12px; padding-top: 12px;
+  border-top: 1px solid rgba(201,150,60,0.08);
+}
+.listing-rating-3d { font-size: 0.75rem; color: var(--gold); }
+.listing-book-btn-3d {
+  padding: 8px 18px;
+  background: var(--gold-shine);
+  border: none; border-radius: 30px;
+  color: #0e0800;
+  font-family: 'Cinzel', serif; font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 1px; cursor: none;
+  transition: all .3s;
+  box-shadow: 0 4px 16px rgba(201,150,60,0.3);
+}
+.listing-book-btn-3d:hover { transform: scale(1.05); box-shadow: 0 6px 24px rgba(201,150,60,0.5); }
+
+/* ── HOW IT WORKS ── */
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0;
+  border: 1px solid rgba(201,150,60,0.1);
+  border-radius: 24px;
+  overflow: hidden;
+  background: rgba(201,150,60,0.03);
+}
+.how-step {
+  padding: 48px 32px;
+  border-right: 1px solid rgba(201,150,60,0.08);
+  position: relative; overflow: hidden;
+  transition: background .4s;
+}
+.how-step:last-child { border-right: none; }
+.how-step::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(201,150,60,0.4), transparent);
+  transform: scaleX(0); transition: transform .5s;
+}
+.how-step:hover { background: rgba(201,150,60,0.04); }
+.how-step:hover::before { transform: scaleX(1); }
+.step-num {
+  font-family: 'Cinzel', serif; font-size: 5rem; font-weight: 900;
+  color: rgba(201,150,60,0.06); line-height: 1; margin-bottom: 16px;
+  transition: color .4s;
+}
+.how-step:hover .step-num { color: rgba(201,150,60,0.12); }
+.step-icon-3d {
+  width: 56px; height: 56px; margin-bottom: 18px;
+  filter: drop-shadow(0 4px 12px rgba(201,150,60,0.3));
+  transition: transform .4s, filter .4s;
+}
+.how-step:hover .step-icon-3d { transform: translateY(-4px); filter: drop-shadow(0 10px 24px rgba(201,150,60,0.6)); }
+.step-title {
+  font-family: 'Cinzel', serif; font-size: 0.9rem;
+  font-weight: 700; color: var(--platinum); margin-bottom: 10px;
+}
+.step-desc { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: var(--silver); line-height: 1.7; }
+
+/* ── OWNER CTA ── */
+.owner-cta-section {
+  padding: 100px 56px;
+  background: linear-gradient(135deg, rgba(201,150,60,0.05) 0%, rgba(0,0,0,0) 50%, rgba(201,112,96,0.04) 100%);
+  border-top: 1px solid rgba(201,150,60,0.1);
+  border-bottom: 1px solid rgba(201,150,60,0.1);
+  position: relative; z-index: 2; overflow: hidden;
+}
+.owner-cta-section::before {
+  content: '';
+  position: absolute; top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(201,150,60,0.1) 0%, transparent 65%);
+  pointer-events: none;
+}
+.cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 60px; flex-wrap: wrap; }
+.cta-text .eyebrow { font-family:'Cinzel',serif; font-size:0.6rem; font-weight:700; letter-spacing:5px; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+.cta-text h2 { font-family:'Cinzel',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:700; color:var(--platinum); line-height:1.15; margin-bottom:16px; }
+.cta-text h2 span { background:var(--gold-shine); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.cta-text p { font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-style:italic; color:var(--silver); max-width:420px; line-height:1.8; }
+.cta-actions { display:flex; gap:16px; flex-wrap:wrap; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--void);
+  border-top: 1px solid rgba(201,150,60,0.1);
+  padding: 72px 56px 36px;
+  position: relative; z-index: 2;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 48px; margin-bottom: 56px;
+}
+.footer-logo-3d {
+  font-family: 'Cinzel', serif; font-size: 2rem;
+  font-weight: 900; letter-spacing: 4px;
+  background: var(--gold-shine);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 14px;
+}
+.footer-tagline { font-family:'Cormorant Garamond',serif; font-size:0.95rem; font-style:italic; color:var(--mist); line-height:1.8; max-width:260px; margin-bottom:24px; }
+.footer-contact { display:flex; flex-direction:column; gap:8px; }
+.footer-contact span { font-size:0.8rem; color:var(--mist); }
+.footer-col h4 { font-family:'Cinzel',serif; font-size:0.65rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:20px; }
+.footer-col ul { list-style:none; display:flex; flex-direction:column; gap:12px; }
+.footer-col ul li a { font-size:0.82rem; color:var(--mist); text-decoration:none; transition:color .25s; font-family:'Raleway',sans-serif; }
+.footer-col ul li a:hover { color:var(--gold-lt); }
+.footer-divider { height:1px; background:linear-gradient(90deg,transparent,rgba(201,150,60,0.2),transparent); margin-bottom:28px; }
+.footer-bottom { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+.footer-copy { font-size:0.75rem; color:var(--mist); font-family:'Raleway',sans-serif; }
+.footer-copy span { color:var(--gold); }
+.social-btns { display:flex; gap:10px; }
+.social-btn-3d {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: rgba(201,150,60,0.06);
+  border: 1px solid rgba(201,150,60,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.95rem; text-decoration: none; color: var(--gold);
+  transition: all .3s; cursor: none;
+}
+.social-btn-3d:hover {
+  background: rgba(201,150,60,0.15);
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(201,150,60,0.25);
+}
+
+/* ── MODALS ── */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 800;
+  background: rgba(4,3,10,0.92);
+  backdrop-filter: blur(20px);
+  align-items: center; justify-content: center; padding: 20px;
+}
+.modal-overlay.active { display: flex; }
+.modal-3d {
+  background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+  border: 1px solid rgba(201,150,60,0.25);
+  border-radius: 24px;
+  padding: 48px;
+  width: 100%; max-width: 500px;
+  max-height: 90vh; overflow-y: auto;
+  position: relative;
+  backdrop-filter: blur(40px);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 0 60px rgba(201,150,60,0.1);
+  animation: modalIn .4s cubic-bezier(.23,1,.32,1) both;
+}
+@keyframes modalIn {
+  from { opacity:0; transform: scale(0.9) translateY(20px); }
+  to { opacity:1; transform: scale(1) translateY(0); }
+}
+.modal-close {
+  position: absolute; top: 20px; right: 22px;
+  background: none; border: none;
+  color: var(--mist); font-size: 1.2rem; cursor: none;
+  transition: color .2s, transform .2s;
+}
+.modal-close:hover { color: var(--gold); transform: rotate(90deg); }
+.modal-gold-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--gold-lt), var(--gold), transparent);
+  border-radius: 2px; margin-bottom: 28px;
+}
+.modal-title {
+  font-family: 'Cinzel', serif; font-size: 1.8rem;
+  font-weight: 700; color: var(--platinum); margin-bottom: 6px;
+}
+.modal-sub { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:0.95rem; color:var(--silver); margin-bottom:28px; }
+
+.form-g { margin-bottom:20px; }
+.form-lbl {
+  display:block;
+  font-family:'Cinzel',serif; font-size:0.6rem; font-weight:700;
+  letter-spacing:2px; text-transform:uppercase;
+  color:var(--gold); margin-bottom:8px;
+}
+.form-inp {
+  width:100%; padding:13px 18px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(201,150,60,0.2);
+  border-radius: 10px;
+  color: var(--platinum);
+  font-family:'Raleway',sans-serif; font-size:0.88rem;
+  outline: none; transition: border-color .3s, box-shadow .3s;
+  backdrop-filter: blur(10px);
+}
+.form-inp::placeholder { color:var(--mist); }
+.form-inp:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,150,60,0.1), inset 0 0 20px rgba(201,150,60,0.03);
+}
+.form-row-2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.modal-submit {
+  width:100%; padding:15px;
+  background: var(--gold-shine);
+  border: none; border-radius: 12px;
+  color: #0e0800;
+  font-family:'Cinzel',serif; font-weight:700; font-size:0.75rem;
+  letter-spacing:2px; text-transform:uppercase;
+  cursor:none; transition:all .35s; margin-top:8px;
+  box-shadow: 0 6px 30px rgba(201,150,60,0.4);
+  position:relative; overflow:hidden;
+}
+.modal-submit::before {
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,0.35) 50%,transparent 70%);
+  transform:translateX(-150%); transition:transform .5s;
+}
+.modal-submit:hover { transform:translateY(-2px); box-shadow:0 12px 40px rgba(201,150,60,0.6); }
+.modal-submit:hover::before { transform:translateX(150%); }
+.modal-toggle { text-align:center; margin-top:20px; font-size:0.8rem; color:var(--mist); }
+.modal-toggle a { color:var(--gold); text-decoration:none; font-weight:600; }
+
+/* PAYMENT OPTS */
+.payment-opts { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:16px; }
+.pay-opt-3d {
+  padding:14px 10px; border:1px solid rgba(201,150,60,0.15);
+  border-radius:12px; text-align:center; cursor:none;
+  font-family:'Cinzel',serif; font-size:0.6rem; font-weight:700;
+  letter-spacing:1px; color:var(--mist);
+  transition:all .3s; background:rgba(255,255,255,0.02);
+}
+.pay-opt-3d.sel, .pay-opt-3d:hover {
+  border-color:var(--gold); color:var(--gold);
+  background:rgba(201,150,60,0.1);
+  box-shadow:0 4px 20px rgba(201,150,60,0.15);
+}
+.pay-opt-3d .pay-icon { font-size:1.4rem; display:block; margin-bottom:6px; }
+
+/* ── WHATSAPP ── */
+.wa-btn {
+  position: fixed; bottom: 30px; right: 30px;
+  width: 58px; height: 58px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; text-decoration: none; z-index: 600;
+  box-shadow: 0 8px 30px rgba(37,211,102,0.5);
+  cursor: none; transition: all .3s;
+  animation: waPulse 2.5s ease infinite;
+}
+@keyframes waPulse {
+  0%,100% { box-shadow:0 8px 30px rgba(37,211,102,0.5); }
+  50% { box-shadow:0 8px 50px rgba(37,211,102,0.8), 0 0 0 8px rgba(37,211,102,0.1); }
+}
+.wa-btn:hover { transform:translateY(-4px) scale(1.08); }
+
+/* ── SEARCH BAR ── */
+.search-section {
+  padding: 36px 56px;
+  background: rgba(201,150,60,0.03);
+  border-bottom: 1px solid rgba(201,150,60,0.1);
+  position: relative; z-index: 2;
+  backdrop-filter: blur(10px);
+}
+.search-row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+.search-inp-3d {
+  flex:1; min-width:200px; padding:14px 20px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(201,150,60,0.2);
+  border-radius:12px;
+  color:var(--platinum);
+  font-family:'Raleway',sans-serif; font-size:0.88rem;
+  outline:none; transition:all .3s;
+  backdrop-filter:blur(10px);
+}
+.search-inp-3d::placeholder { color:var(--mist); }
+.search-inp-3d:focus { border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,150,60,0.1); }
+.search-btn-3d {
+  padding:14px 32px;
+  background:var(--gold-shine);
+  border:none; border-radius:12px;
+  color:#0e0800;
+  font-family:'Cinzel',serif; font-weight:700; font-size:0.72rem;
+  letter-spacing:2px; text-transform:uppercase;
+  cursor:none; transition:all .3s; white-space:nowrap;
+  box-shadow:0 4px 20px rgba(201,150,60,0.35);
+}
+.search-btn-3d:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(201,150,60,0.5); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(32px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes marquee {
+  from { transform:translateX(0); }
+  to { transform:translateX(-50%); }
+}
+.reveal { opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px) { .footer-grid { grid-template-columns:1fr 1fr 1fr; } }
+@media(max-width:900px) {
+  nav { padding:16px 24px; }
+  .nav-links { display:none; }
+  .section { padding:70px 24px; }
+  .owner-cta-section { padding:70px 24px; }
+  footer { padding:56px 24px 28px; }
+  .footer-grid { grid-template-columns:1fr 1fr; }
+  .hero { padding:120px 24px 60px; }
+  .hero-stats { flex-direction:column; }
+  .hero-stat { border-right:none; border-bottom:1px solid rgba(201,150,60,0.1); }
+  .search-section { padding:28px 24px; }
+}
+@media(max-width:600px) {
+  .hero-title { font-size:3.5rem; }
+  .footer-grid { grid-template-columns:1fr; }
+  .labour-grid,.vehicle-showcase,.marriage-grid,.listings-grid-3d { grid-template-columns:1fr; }
+  .form-row-2 { grid-template-columns:1fr; }
+  .payment-opts { grid-template-columns:1fr 1fr; }
+  .how-grid { grid-template-columns:1fr 1fr; }
+  .hero-actions { flex-direction:column; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- ══ NAV ══ -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">OR</a>
+  <div class="nav-links">
+    <a href="#labour">Labour</a>
+    <a href="#vehicles">Vehicles</a>
+    <a href="#marriage">Marriage</a>
+    <a href="#browse">Browse</a>
+    <a href="#how">Process</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-actions">
+    <button class="btn-glass" onclick="openModal('loginModal')">Sign In</button>
+    <button class="btn-gold" onclick="openModal('registerModal')">List Service</button>
+  </div>
+</nav>
+
+<!-- ══ MARQUEE ══ -->
+<div class="marquee-wrap" style="margin-top:80px;">
+  <div class="marquee-track">
+    <span class="marquee-item">Labour Services <span class="dot">◆</span></span>
+    <span class="marquee-item">Vehicle Rentals <span class="dot">◆</span></span>
+    <span class="marquee-item">Wedding Events <span class="dot">◆</span></span>
+    <span class="marquee-item">Construction Machines <span class="dot">◆</span></span>
+    <span class="marquee-item">Event Organizers <span class="dot">◆</span></span>
+    <span class="marquee-item">Farm House Booking <span class="dot">◆</span></span>
+    <span class="marquee-item">Chef On Call <span class="dot">◆</span></span>
+    <span class="marquee-item">Delivery Trucks <span class="dot">◆</span></span>
+    <span class="marquee-item">Labour Services <span class="dot">◆</span></span>
+    <span class="marquee-item">Vehicle Rentals <span class="dot">◆</span></span>
+    <span class="marquee-item">Wedding Events <span class="dot">◆</span></span>
+    <span class="marquee-item">Construction Machines <span class="dot">◆</span></span>
+    <span class="marquee-item">Event Organizers <span class="dot">◆</span></span>
+    <span class="marquee-item">Farm House Booking <span class="dot">◆</span></span>
+    <span class="marquee-item">Chef On Call <span class="dot">◆</span></span>
+    <span class="marquee-item">Delivery Trucks <span class="dot">◆</span></span>
+  </div>
+</div>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+
+  <div class="hero-eyebrow">India's Premium Rental Marketplace</div>
+  <h1 class="hero-title">
+    <span class="or-text">OR</span>
+    <span class="rent-text">On Rent</span>
+  </h1>
+  <p class="hero-italic">Labour · Vehicles · Weddings — <em>Delivered to Your Door</em></p>
+  <div class="hero-actions">
+    <a href="#browse" class="btn-hero-primary">Explore Services</a>
+    <button class="btn-hero-outline" onclick="openModal('registerModal')">List Your Service →</button>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">10+</div><div class="hero-stat-label">Labour Types</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">6+</div><div class="hero-stat-label">Vehicle Categories</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">10+</div><div class="hero-stat-label">Wedding Services</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">24/7</div><div class="hero-stat-label">Available</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">100%</div><div class="hero-stat-label">Verified Pros</div></div>
+  </div>
+</section>
+
+<!-- ══ SEARCH ══ -->
+<div class="search-section">
+  <div class="search-row">
+    <input class="search-inp-3d" type="text" placeholder="✦  Search service, vehicle, or event..."/>
+    <select class="search-inp-3d" style="max-width:180px;cursor:none;">
+      <option value="">All Categories</option>
+      <option>Labour &amp; Services</option>
+      <option>Vehicles &amp; Services</option>
+      <option>Marriage &amp; Services</option>
+    </select>
+    <select class="search-inp-3d" style="max-width:160px;cursor:none;">
+      <option value="">All Cities</option>
+      <option>Pune</option><option>Mumbai</option>
+      <option>Nashik</option><option>Nagpur</option>
+    </select>
+    <select class="search-inp-3d" style="max-width:180px;cursor:none;">
+      <option value="">Price Range</option>
+      <option>Under ₹500</option>
+      <option>₹500 – ₹2,000</option>
+      <option>₹2,000 – ₹5,000</option>
+      <option>Above ₹5,000</option>
+    </select>
+    <button class="search-btn-3d">Search ✦</button>
+  </div>
+</div>
+
+<!-- ══ LABOUR ══ -->
+<section class="section" id="labour">
+  <div class="section-header-row reveal">
+    <div>
+      <div class="section-eyebrow">Category One</div>
+      <h2 class="section-title">Labour <span>&amp; Services</span></h2>
+      <p class="section-desc">Skilled professionals — verified, experienced, available for half day or full day at your location.</p>
+    </div>
+    <div class="section-num">01</div>
+  </div>
+
+  <div class="labour-grid">
+    <!-- CARD 1 -->
+    <div class="service-3d reveal" onclick="openBooking('General Labour')">
+      <div class="service-3d-inner">
+        <div class="card-number">01</div>
+        <div class="service-icon-wrap">
+          <div class="service-icon-bg"></div>
+          <svg class="service-icon-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="10" r="6" fill="#c9963c" opacity="0.9"/>
+            <path d="M8 36c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke="#c9963c" stroke-width="2.5" stroke-linecap="round"/>
+            <rect x="15" y="22" width="10" height="6" rx="2" fill="#c9963c" opacity="0.5"/>
+            <path d="M12 18h3l2 4h6l2-4h3" stroke="#f0c060" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="card-title-3d">General Labour</div>
+        <div class="card-desc-3d">Skilled and unskilled labourers for loading, shifting, site work and more tasks.</div>
+        <div class="card-chips">
+          <span class="chip">Half Day</span><span class="chip">Full Day</span>
+          <span class="chip silver">New</span><span class="chip silver">Experienced</span>
+        </div>
+        <button class="card-book-btn-3d"><span>Book Service →</span></button>
+      </div>
+    </div>
+    <!-- CARD 2 -->
+    <div class="service-3d reveal" onclick="openBooking('Electrician')">
+      <div class="service-3d-inner">
+        <div class="card-number">02</div>
+        <div class="service-icon-wrap">
+          <div class="service-icon-bg"></div>
+          <svg class="service-icon-svg" viewBox="0 0 40 40" fill="none">
+            <path d="M22 4L10 22h10l-2 14L30 18H20L22 4z" fill="#c9963c" stroke="#f0c060" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="20" cy="22" r="3" fill="#f0c060" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="card-title-3d">Electrician</div>
+        <div class="card-desc-3d">Certified electricians for wiring, repairs, installations and electrical emergencies.</div>
+        <div class="card-chips">
+          <span class="chip">Residential</span><span class="chip">Commercial</span><span class="chip rose">Emergency</span>
+        </div>
+        <button class="card-book-btn-3d"><span>Book Service →</span></button>
+      </div>
+    </div>
+    <!-- CARD 3 -->
+    <div class="service-3d reveal" onclick="openBooking('Mechanic')">
+      <div class="service-3d-inner">
+        <div class="card-number">03</div>
+        <div class="service-icon-wrap">
+          <div class="service-icon-bg"></div>
+          <svg class="service-icon-svg" viewBox="0 0 40 40" fill="none">
+            <circle cx="14" cy="14" r="5" fill="none" stroke="#c9963c" stroke-width="2"/>
+            <path d="M17 17l12 12" stroke="#f0c060" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="29" cy="29" r="4" fill="#c9963c" opacity="0.8"/>
+            <path d="M10 20l4-4M20 10l-4 4" stroke="#c9963c" stroke-width="1.5" stroke-linecap="round"/>
+            <rect x="6" y="6" width="4" height="4" rx="1" fill="#f0c060" opacity="0.6" transform="rotate(45 8 8)"/>
+          </svg>
+        </div>
+        <div class="card-title-3d">Mechanic</div>
+        <div class="card-desc-3d">Expert mechanics for vehicle maintenance, repairs, and on-site servicing for all types.</div>
+        <div class="card-chips">
+          <span class="chip">2-Wheeler</span><span class="chip">4-Wheeler</span><span class="chip silver">On-Site</span>
+        </div>
+        <button class="card-book-btn-3d"><span>Book Service →</span></button>
+      </div>
+    </div>
+    <!-- CARD 4 -->
+    <div class="service-3d reveal" onclick="openBooking('Cleaner')">
+      <div class="service-3d-inner">
+        <div class="card-number">04</div>
+        <div class="service-icon-wrap">
+          <div class="service-icon-bg"></div>
+          <svg class="service-icon-svg" viewBox="0 0 40 40" fill="none">
+            <ellipse cx="20" cy="32" rx="12" ry="4" fill="#c9963c" opacity="0.3"/>
+            <path d="M14 28c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#c9963c" stroke-width="2" stroke-linecap="round"/>
+            <path d="M16 14l-4 10h16l-4-10" fill="#c9963c" opacity="0.7"/>
+            <rect x="18" y="8" width="4" height="8" rx="2" fill="#f0c060" opacity="0.8"/>
+            <path d="M12 28h16" stroke="#f0c060" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="card-title-3d">Cleaner</div>
+        <div class="card-desc-3d">Professional cleaning staff for homes, offices, commercial spaces and post-event cleanup.</div>
+        <div class="card-chips">
+          <span class="chip">Deep Clean</span><span class="chip">Regular</span><span class="chip rose">Post-Event</span>
+        </div>
+        <button class="card-book-btn-3d"><span>Book Service →</span></button>
+      </div>
+    </div>
+    <!-- CARD 5 -->
+    <div class="service-3d reveal" onclick="openBooking('Car Wash')">
+      <div class="service-3d-inner">
+        <div class="card-number">05</div>
+        <div class="service-icon-wrap">
+          <div class="service-icon-bg"></div>
+          <svg class="service-icon-svg" viewBox="0 0 40 40" fill="none">
+            <path d="M6 24h28l-3-8H9L6 24z" fill="#c9963c" opacity="0.8"/>
+            <rect x="8" y="24" width="24" height="8" rx="2" fill="#c9963c" opacity="0.5"/>
+            <circle cx="13" cy="32" r="3" fill="#f0c060"/>
+            <circle cx="27" cy="32" r="3" fill="#f0c060"/>
+            <path d="M8 10s4-4 12-4 12 4 12 4" stroke="#f0c060" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+            <path d="M12 6v4M20 5v4M28 6v4" stroke="#f0c060" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="card-title-3d">Car Wash</div>
+        <div class="card-desc-3d">Doorstep car wash and detailing service — basic wash to full interior and exterior detailing.</div>
+        <div class="card-chips">
+          <span class="chip">Basic Wash</span><span class="chip">Detailing</span><span class="chip rose">Doorstep</span>
+        </div>
+        <button class="card-book-btn-3d"><span>Book Service →</span></button>
+      </div>
+    </div>
+    <!-- CARD 6 -->
+    <div class="service-3d reveal" onclick="openBooking('House Keeper')">
+      <div class="service-3d-inner">
+        <div class="card-number">06</div>
+        <div class="service-icon-wrap">
+          <div class="service-icon-bg"></div>
+          <svg class="service-icon-svg" viewBox="0 0 40 40" fill="none">
+            <path d="M6 18L20 6l14 12v18H6V18z" fill="#c9963c" opacity="0.6"/>
+            <rect x="15" y="26" width="10" height="10" rx="1" fill="#f0c060" opacity="0.8"/>
+            <rect x="11" y="18" width="6" height="6" rx="1" fill="#f0c060" opacity="0.6"/>
+            <rect x="23" y="18" width="6" height="6" rx="1" fill="#f0c060" opacity="0.6"/>
+            <path d="M20 6v-3" stroke="#f0c060" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="card-title-3d">House Keeper</div>
+        <div class="card-desc-3d">Reliable housekeeping professionals for daily, weekly or monthly arrangements at home.</div>
+        <div class="card-chips">
+          <span class="chip">Daily</span><span class="chip">Weekly</span><span class="chip silver">Monthly</span>
+        </div>
+        <button class="card-book-btn-3d"><span>Book Service →</span></button>
+      </div>
+    </div>
+    <!-- CARD 7 -->
+    <div class="service-3d reveal" onclick="openBooking('Chef')">
+      <div class="service-3d-inner">
+        <div class="card-number">07</div>
+        <div class="service-icon-wrap">
+          <div class="service-icon-bg"></div>
+          <svg class="service-icon-svg" viewBox="0 0 40 40" fill="none">
+            <ellipse cx="20" cy="14" rx="10" ry="7" fill="#c9963c" opacity="0.7"/>
+            <rect x="10" y="19" width="20" height="4" fill="#c9963c" opacity="0.5"/>
+            <path d="M14 23v8h12v-8" fill="#f0c060" opacity="0.6"/>
+            <path d="M16 23v8M24 23v8" stroke="#c9963c" stroke-width="1.5" opacity="0.5"/>
+            <circle cx="20" cy="14" r="3" fill="#f0c060" opacity="0.9"/>
+          </svg>
+        </div>
+        <div class="card-title-3d">Chef</div>
+        <div class="card-desc-3d">Home chefs and event cooks from daily meals to special occasion catering, multi-cuisine.</div>
+        <div class="card-chips">
+          <span class="chip">Home Cook</span><span class="chip">Event Cook</span><span class="chip rose">Multi-Cuisine</span>
+        </div>
+        <button class="card-book-btn-3d"><span>Book Service →</span></button>
+      </div>
+    </div>
+    <!-- CARD 8 -->
+    <div class="service-3d reveal" onclick="openBooking('Painter')">
+      <div class="service-3d-inner">
+        <div class="card-number">08</div>
+        <div class="service-icon-wrap">
+          <div class="service-icon-bg"></div>
+          <svg class="service-icon-svg" viewBox="0 0 40 40" fill="none">
+            <rect x="8" y="6" width="16" height="22" rx="2" fill="#c9963c" opacity="0.6"/>
+            <rect x="10" y="8" width="12" height="18" rx="1" fill="#f0c060" opacity="0.3"/>
+            <path d="M24 18h4l4 10-4 2-4-12z" fill="#c9963c" opacity="0.8"/>
+            <circle cx="28" cy="28" r="3" fill="#f0c060"/>
+            <path d="M10 14h12M10 18h12M10 22h8" stroke="#c9963c" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="card-title-3d">Painter</div>
+        <div class="card-desc-3d">Experienced painters for interior, exterior, texture finishes and waterproofing treatments.</div>
+        <div class="card-chips">
+          <span class="chip">Interior</span><span class="chip">Exterior</span><span class="chip silver">Texture</span>
+        </div>
+        <button class="card-book-btn-3d"><span>Book Service →</span></button>
+      </div>
+    </div>
+    <!-- CARD 9 -->
+    <div class="service-3d reveal" onclick="openBooking('Driver')">
+      <div class="service-3d-inner">
+        <div class="card-number">09</div>
+        <div class="service-icon-wrap">
+          <div class="service-icon-bg"></div>
+          <svg class="service-icon-svg" viewBox="0 0 40 40" fill="none">
+            <circle cx="20" cy="20" r="14" stroke="#c9963c" stroke-width="2" fill="none"/>
+            <circle cx="20" cy="20" r="8" stroke="#f0c060" stroke-width="1.5" fill="none" opacity="0.5"/>
+            <circle cx="20" cy="20" r="3" fill="#c9963c"/>
+            <path d="M20 6v4M20 30v4M6 20h4M30 20h4" stroke="#c9963c" stroke-width="2" stroke-linecap="round"/>
+            <path d="M20 20l6-6" stroke="#f0c060" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="card-title-3d">Driver</div>
+        <div class="card-desc-3d">Trained and verified drivers for personal, family or corporate use — half day or full day.</div>
+        <div class="card-chips">
+          <span class="chip">Half Day</span><span class="chip">Full Day</span><span class="chip rose">Outstation</span>
+        </div>
+        <button class="card-book-btn-3d"><span>Book Service →</span></button>
+      </div>
+    </div>
+    <!-- CARD 10 -->
+    <div class="service-3d reveal" onclick="openBooking('Plumber')">
+      <div class="service-3d-inner">
+        <div class="card-number">10</div>
+        <div class="service-icon-wrap">
+          <div class="service-icon-bg"></div>
+          <svg class="service-icon-svg" viewBox="0 0 40 40" fill="none">
+            <path d="M8 8h6v6H8V8z" fill="#c9963c" opacity="0.8"/>
+            <path d="M14 11h12v6" stroke="#c9963c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M14 11v18" stroke="#c9963c" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <path d="M26 17h6v6H26V17z" fill="#f0c060" opacity="0.7"/>
+            <path d="M14 29h12" stroke="#f0c060" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M26 29v4" stroke="#f0c060" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="card-title-3d">Plumber</div>
+        <div class="card-desc-3d">Expert plumbers for pipe fitting, leak repairs, drainage and water supply installations.</div>
+        <div class="card-chips">
+          <span class="chip">Repairs</span><span class="chip">Installation</span><span class="chip rose">Emergency</span>
+        </div>
+        <button class="card-book-btn-3d"><span>Book Service →</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ VEHICLES ══ -->
+<section class="section section-inner-bg" id="vehicles">
+  <div class="section-header-row reveal">
+    <div>
+      <div class="section-eyebrow">Category Two</div>
+      <h2 class="section-title">Vehicles <span>&amp; Services</span></h2>
+      <p class="section-desc">From city rides to heavy construction — every vehicle type with or without a professional driver.</p>
+    </div>
+    <div class="section-num">02</div>
+  </div>
+  <div class="vehicle-showcase">
+
+    <div class="vehicle-3d-card reveal">
+      <div class="vehicle-thumb-3d" style="background:linear-gradient(135deg,#140d28 0%,#0a0618 100%);">
+        <svg class="vehicle-thumb-svg" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="60" cy="72" rx="50" ry="5" fill="rgba(201,150,60,0.2)" filter="url(#b1)"/>
+          <path d="M10 50h100l-8-20H18L10 50z" fill="#c9963c" opacity="0.8"/>
+          <path d="M20 50V60h80V50" fill="#b8862e" opacity="0.9"/>
+          <path d="M24 30h72l-6-12H30L24 30z" fill="#f0c060" opacity="0.7"/>
+          <rect x="26" y="20" width="28" height="10" rx="2" fill="rgba(140,200,255,0.5)"/>
+          <rect x="66" y="20" width="28" height="10" rx="2" fill="rgba(140,200,255,0.5)"/>
+          <circle cx="30" cy="64" r="8" fill="#2a2040" stroke="#c9963c" stroke-width="2"/>
+          <circle cx="30" cy="64" r="4" fill="#c9963c" opacity="0.6"/>
+          <circle cx="90" cy="64" r="8" fill="#2a2040" stroke="#c9963c" stroke-width="2"/>
+          <circle cx="90" cy="64" r="4" fill="#c9963c" opacity="0.6"/>
+          <rect x="10" y="46" width="8" height="6" rx="2" fill="#f0c060" opacity="0.8"/>
+          <rect x="102" y="46" width="8" height="6" rx="2" fill="#f0c060" opacity="0.4"/>
+          <defs><filter id="b1"><feGaussianBlur stdDeviation="4"/></filter></defs>
+        </svg>
+        <div class="vehicle-thumb-glow"></div>
+      </div>
+      <div class="vehicle-body-3d">
+        <div class="vehicle-label">Vehicle 01</div>
+        <div class="vehicle-name-3d">Cars</div>
+        <div class="vehicle-desc-3d">Wide range of premium cars for personal or business travel. All come with a professional driver.</div>
+        <div class="vehicle-chips">
+          <span class="chip">Sedan</span><span class="chip">Coupe</span>
+          <span class="chip">SUV</span><span class="chip">Off-Road</span><span class="chip rose">Car + Driver</span>
+        </div>
+        <button class="v-book-btn" onclick="openBooking('Cars')">Reserve Now →</button>
+      </div>
+    </div>
+
+    <div class="vehicle-3d-card reveal">
+      <div class="vehicle-thumb-3d" style="background:linear-gradient(135deg,#0d1a28 0%,#061020 100%);">
+        <svg class="vehicle-thumb-svg" viewBox="0 0 120 80" fill="none">
+          <ellipse cx="60" cy="72" rx="40" ry="4" fill="rgba(201,150,60,0.2)"/>
+          <path d="M20 50l10-20h60l10 20H20z" fill="#c9963c" opacity="0.8"/>
+          <path d="M20 50v12h80V50" fill="#b8862e" opacity="0.9"/>
+          <circle cx="38" cy="66" r="8" fill="#1a2030" stroke="#c9963c" stroke-width="2"/>
+          <circle cx="38" cy="66" r="4" fill="#c9963c" opacity="0.6"/>
+          <circle cx="82" cy="66" r="8" fill="#1a2030" stroke="#c9963c" stroke-width="2"/>
+          <circle cx="82" cy="66" r="4" fill="#c9963c" opacity="0.6"/>
+          <path d="M40 30l-6 20h52l-8-20H40z" fill="#f0c060" opacity="0.5"/>
+          <rect x="18" y="46" width="10" height="7" rx="2" fill="#f0c060" opacity="0.8"/>
+        </svg>
+        <div class="vehicle-thumb-glow"></div>
+      </div>
+      <div class="vehicle-body-3d">
+        <div class="vehicle-label">Vehicle 02</div>
+        <div class="vehicle-name-3d">Bikes</div>
+        <div class="vehicle-desc-3d">Rent a bike solo or opt for a bike with a professional rider for city trips and deliveries.</div>
+        <div class="vehicle-chips">
+          <span class="chip">Bike Only</span><span class="chip rose">Bike + Driver</span>
+        </div>
+        <button class="v-book-btn" onclick="openBooking('Bikes')">Reserve Now →</button>
+      </div>
+    </div>
+
+    <div class="vehicle-3d-card reveal">
+      <div class="vehicle-thumb-3d" style="background:linear-gradient(135deg,#1a180d 0%,#120f06 100%);">
+        <svg class="vehicle-thumb-svg" viewBox="0 0 120 80" fill="none">
+          <rect x="10" y="28" width="100" height="34" rx="4" fill="#c9963c" opacity="0.8"/>
+          <rect x="10" y="28" width="100" height="16" rx="4" fill="#f0c060" opacity="0.5"/>
+          <rect x="14" y="30" width="22" height="12" rx="2" fill="rgba(140,200,255,0.5)"/>
+          <rect x="42" y="30" width="22" height="12" rx="2" fill="rgba(140,200,255,0.5)"/>
+          <rect x="70" y="30" width="22" height="12" rx="2" fill="rgba(140,200,255,0.5)"/>
+          <circle cx="26" cy="66" r="7" fill="#1a1606" stroke="#c9963c" stroke-width="2"/>
+          <circle cx="94" cy="66" r="7" fill="#1a1606" stroke="#c9963c" stroke-width="2"/>
+          <rect x="8" y="38" width="8" height="10" rx="2" fill="#f0c060" opacity="0.8"/>
+        </svg>
+        <div class="vehicle-thumb-glow"></div>
+      </div>
+      <div class="vehicle-body-3d">
+        <div class="vehicle-label">Vehicle 03</div>
+        <div class="vehicle-name-3d">Bus</div>
+        <div class="vehicle-desc-3d">Perfect for group travel, school trips, events and outstation trips with flexible configurations.</div>
+        <div class="vehicle-chips">
+          <span class="chip">Small Bus</span><span class="chip">Large Bus</span>
+          <span class="chip">AC</span><span class="chip">Non-AC</span><span class="chip rose">Sleeper</span>
+        </div>
+        <button class="v-book-btn" onclick="openBooking('Bus')">Reserve Now →</button>
+      </div>
+    </div>
+
+    <div class="vehicle-3d-card reveal">
+      <div class="vehicle-thumb-3d" style="background:linear-gradient(135deg,#0d1a15 0%,#081008 100%);">
+        <svg class="vehicle-thumb-svg" viewBox="0 0 120 80" fill="none">
+          <rect x="8" y="24" width="80" height="36" rx="3" fill="#c9963c" opacity="0.8"/>
+          <rect x="88" y="34" width="24" height="26" rx="2" fill="#b8862e" opacity="0.9"/>
+          <rect x="10" y="26" width="40" height="16" rx="2" fill="rgba(140,200,255,0.4)"/>
+          <circle cx="28" cy="64" r="8" fill="#0d1a10" stroke="#c9963c" stroke-width="2"/>
+          <circle cx="68" cy="64" r="8" fill="#0d1a10" stroke="#c9963c" stroke-width="2"/>
+          <circle cx="98" cy="64" r="8" fill="#0d1a10" stroke="#c9963c" stroke-width="2"/>
+          <rect x="6" y="40" width="8" height="8" rx="1" fill="#f0c060" opacity="0.8"/>
+        </svg>
+        <div class="vehicle-thumb-glow"></div>
+        <div class="price-tag" style="position:absolute;bottom:10px;right:12px;font-size:0.58rem;">⚡ Distance Pricing</div>
+      </div>
+      <div class="vehicle-body-3d">
+        <div class="vehicle-label">Vehicle 04</div>
+        <div class="vehicle-name-3d">Delivery Trucks</div>
+        <div class="vehicle-desc-3d">Reliable trucks for goods transportation. Pricing calculated based on distance covered.</div>
+        <div class="vehicle-chips">
+          <span class="chip">Truck Only</span><span class="chip rose">Truck + Driver</span><span class="chip silver">Fuel Options</span>
+        </div>
+        <button class="v-book-btn" onclick="openBooking('Delivery Trucks')">Reserve Now →</button>
+      </div>
+    </div>
+
+    <div class="vehicle-3d-card reveal">
+      <div class="vehicle-thumb-3d" style="background:linear-gradient(135deg,#1a1208 0%,#100b04 100%);">
+        <svg class="vehicle-thumb-svg" viewBox="0 0 120 80" fill="none">
+          <rect x="8" y="40" width="104" height="24" rx="3" fill="#c9963c" opacity="0.7"/>
+          <path d="M30 20h60l10 20H20L30 20z" fill="#b8862e" opacity="0.9"/>
+          <rect x="40" y="24" width="40" height="12" rx="2" fill="rgba(140,200,255,0.3)"/>
+          <rect x="8" y="30" width="18" height="16" rx="2" fill="#c9963c" opacity="0.5"/>
+          <circle cx="24" cy="68" r="7" fill="#1a1006" stroke="#f0c060" stroke-width="2"/>
+          <circle cx="50" cy="68" r="7" fill="#1a1006" stroke="#f0c060" stroke-width="2"/>
+          <circle cx="96" cy="68" r="7" fill="#1a1006" stroke="#f0c060" stroke-width="2"/>
+          <path d="M60 20v-12l10 12" fill="#f0c060" opacity="0.6"/>
+        </svg>
+        <div class="vehicle-thumb-glow"></div>
+      </div>
+      <div class="vehicle-body-3d">
+        <div class="vehicle-label">Vehicle 05</div>
+        <div class="vehicle-name-3d">Construction Vehicles</div>
+        <div class="vehicle-desc-3d">Heavy construction machines for your site. JCB, Roller, Crane — drivers always included.</div>
+        <div class="vehicle-chips">
+          <span class="chip">JCB</span><span class="chip">Roller</span>
+          <span class="chip">Crane</span><span class="chip rose">Driver Included</span>
+        </div>
+        <button class="v-book-btn" onclick="openBooking('Construction Vehicles')">Reserve Now →</button>
+      </div>
+    </div>
+
+    <div class="vehicle-3d-card reveal">
+      <div class="vehicle-thumb-3d" style="background:linear-gradient(135deg,#1a0f0a 0%,#100806 100%);">
+        <svg class="vehicle-thumb-svg" viewBox="0 0 120 80" fill="none">
+          <path d="M10 44h100l-6-16H16L10 44z" fill="#c9963c" opacity="0.8"/>
+          <rect x="10" y="44" width="100" height="20" rx="2" fill="#b8862e" opacity="0.9"/>
+          <path d="M30 28l-10 16h80l-10-16H30z" fill="#f0c060" opacity="0.4"/>
+          <circle cx="28" cy="66" r="7" fill="#1a0e0a" stroke="#c9963c" stroke-width="2"/>
+          <circle cx="60" cy="66" r="7" fill="#1a0e0a" stroke="#c9963c" stroke-width="2"/>
+          <circle cx="92" cy="66" r="7" fill="#1a0e0a" stroke="#c9963c" stroke-width="2"/>
+          <rect x="6" y="38" width="10" height="10" rx="2" fill="#f0c060" opacity="0.7"/>
+          <path d="M10 44h8l2-6H12L10 44z" fill="#f0c060" opacity="0.9"/>
+        </svg>
+        <div class="vehicle-thumb-glow"></div>
+        <div class="price-tag" style="position:absolute;bottom:10px;right:12px;font-size:0.58rem;">🏗 Quote Required</div>
+      </div>
+      <div class="vehicle-body-3d">
+        <div class="vehicle-label">Vehicle 06</div>
+        <div class="vehicle-name-3d">Dump Trucks</div>
+        <div class="vehicle-desc-3d">Heavy-duty tippers and dumpers for construction sites, quarries and bulk material transport.</div>
+        <div class="vehicle-chips">
+          <span class="chip">Tipper</span><span class="chip">Dumper</span>
+          <span class="chip silver">Half Day</span><span class="chip rose">Full Day</span>
+        </div>
+        <button class="v-book-btn" onclick="openBooking('Dump Trucks')">Reserve Now →</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ MARRIAGE ══ -->
+<section class="section marriage-bg" id="marriage">
+  <div class="section-header-row reveal">
+    <div>
+      <div class="section-eyebrow" style="color:var(--rose-gold);">Category Three</div>
+      <h2 class="section-title">Marriage <span style="background:linear-gradient(135deg,var(--rose-gold),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">&amp; Services</span></h2>
+      <p class="section-desc">Every element of your perfect wedding — from catering to decor, venue to entertainment.</p>
+    </div>
+    <div class="section-num">03</div>
+  </div>
+  <div class="marriage-grid">
+
+    <div class="marriage-card-3d reveal">
+      <div class="m-icon-area" style="background:linear-gradient(135deg,rgba(201,112,96,0.08),rgba(0,0,0,0.3));">
+        <svg class="m-icon-3d" viewBox="0 0 80 80" fill="none">
+          <ellipse cx="40" cy="68" rx="28" ry="5" fill="rgba(201,112,96,0.2)"/>
+          <path d="M12 52h56l-6-16H18L12 52z" fill="#c97060" opacity="0.8"/>
+          <rect x="12" y="52" width="56" height="16" rx="3" fill="#b86050" opacity="0.9"/>
+          <path d="M20 36h40l4 8H16l4-8z" fill="#f0c060" opacity="0.5"/>
+          <path d="M28 24c0-6.6 5.4-12 12-12s12 5.4 12 12" stroke="#c9963c" stroke-width="2" fill="none"/>
+          <circle cx="40" cy="24" r="5" fill="#f0c060" opacity="0.8"/>
+          <path d="M20 52v8M60 52v8M30 52v8M50 52v8" stroke="#c9963c" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="m-body-3d">
+        <div class="m-label-3d">Service 01</div>
+        <div class="m-name-3d">Caterers</div>
+        <div class="m-desc-3d">Professional catering teams for weddings, engagements and family functions of all sizes.</div>
+        <div class="card-chips" style="margin-bottom:14px;"><span class="chip rose">Veg</span><span class="chip rose">Non-Veg</span><span class="chip silver">Multi-Cuisine</span></div>
+        <button class="m-book-btn-3d" onclick="openBooking('Caterers')"><span>Book Caterers →</span></button>
+      </div>
+    </div>
+
+    <div class="marriage-card-3d reveal">
+      <div class="m-icon-area" style="background:linear-gradient(135deg,rgba(100,150,120,0.08),rgba(0,0,0,0.3));">
+        <svg class="m-icon-3d" viewBox="0 0 80 80" fill="none">
+          <circle cx="40" cy="20" r="10" fill="#c9963c" opacity="0.8"/>
+          <path d="M24 70V42c0-4.4 7.2-8 16-8s16 3.6 16 8v28" stroke="#c97060" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <rect x="30" y="34" width="20" height="6" rx="2" fill="#c9963c" opacity="0.5"/>
+          <path d="M28 44h24M28 54h24M28 64h24" stroke="#c9963c" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+          <rect x="34" y="42" width="12" height="28" fill="#c97060" opacity="0.3" rx="1"/>
+        </svg>
+      </div>
+      <div class="m-body-3d">
+        <div class="m-label-3d">Service 02</div>
+        <div class="m-name-3d">Waiters</div>
+        <div class="m-desc-3d">Trained and presentable waiters for events, parties and wedding receptions.</div>
+        <div class="card-chips" style="margin-bottom:14px;"><span class="chip rose">Half Day</span><span class="chip rose">Full Day</span><span class="chip silver">Uniform Included</span></div>
+        <button class="m-book-btn-3d" onclick="openBooking('Waiters')"><span>Book Waiters →</span></button>
+      </div>
+    </div>
+
+    <div class="marriage-card-3d reveal">
+      <div class="m-icon-area" style="background:linear-gradient(135deg,rgba(150,100,80,0.08),rgba(0,0,0,0.3));">
+        <svg class="m-icon-3d" viewBox="0 0 80 80" fill="none">
+          <rect x="15" y="30" width="50" height="36" rx="4" fill="#c97060" opacity="0.7"/>
+          <rect x="15" y="30" width="50" height="14" rx="4" fill="#f0c060" opacity="0.4"/>
+          <path d="M10 30h60" stroke="#c9963c" stroke-width="2"/>
+          <rect x="22" y="32" width="14" height="10" rx="1" fill="rgba(140,200,255,0.4)"/>
+          <rect x="44" y="32" width="14" height="10" rx="1" fill="rgba(140,200,255,0.4)"/>
+          <circle cx="28" cy="66" r="6" fill="#1a0e0a" stroke="#c97060" stroke-width="2"/>
+          <circle cx="52" cy="66" r="6" fill="#1a0e0a" stroke="#c97060" stroke-width="2"/>
+          <path d="M8 44h6M66 44h6" stroke="#f0c060" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="m-body-3d">
+        <div class="m-label-3d">Service 03</div>
+        <div class="m-name-3d">Vehicles for Events</div>
+        <div class="m-desc-3d">Decorated premium vehicles for bridal entry, baraat, guest transfers and event logistics.</div>
+        <div class="card-chips" style="margin-bottom:14px;"><span class="chip rose">Bridal Car</span><span class="chip rose">Baraat</span><span class="chip silver">Guest Shuttle</span></div>
+        <button class="m-book-btn-3d" onclick="openBooking('Vehicles for Events')"><span>Book Vehicle →</span></button>
+      </div>
+    </div>
+
+    <div class="marriage-card-3d reveal">
+      <div class="m-icon-area" style="background:linear-gradient(135deg,rgba(60,100,150,0.08),rgba(0,0,0,0.3));">
+        <svg class="m-icon-3d" viewBox="0 0 80 80" fill="none">
+          <path d="M10 36L40 12l30 24v36H10V36z" fill="#c97060" opacity="0.5"/>
+          <rect x="26" y="48" width="28" height="24" rx="2" fill="#f0c060" opacity="0.6"/>
+          <rect x="18" y="36" width="16" height="16" rx="2" fill="rgba(140,200,255,0.4)"/>
+          <rect x="46" y="36" width="16" height="16" rx="2" fill="rgba(140,200,255,0.4)"/>
+          <path d="M10 36h60M40 12v-5" stroke="#c9963c" stroke-width="2" stroke-linecap="round"/>
+          <path d="M36 8l4-4 4 4" stroke="#f0c060" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M34 48h12M34 56h12M34 64h12" stroke="#c97060" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="m-body-3d">
+        <div class="m-label-3d">Service 04</div>
+        <div class="m-name-3d">Marriage Halls</div>
+        <div class="m-desc-3d">Elegant spacious halls with flexible capacities for intimate ceremonies to grand celebrations.</div>
+        <div class="card-chips" style="margin-bottom:14px;"><span class="chip rose">AC Hall</span><span class="chip rose">Non-AC</span><span class="chip silver">Parking</span></div>
+        <button class="m-book-btn-3d" onclick="openBooking('Marriage Hall')"><span>Book Hall →</span></button>
+      </div>
+    </div>
+
+    <div class="marriage-card-3d reveal">
+      <div class="m-icon-area" style="background:linear-gradient(135deg,rgba(60,140,80,0.08),rgba(0,0,0,0.3));">
+        <svg class="m-icon-3d" viewBox="0 0 80 80" fill="none">
+          <ellipse cx="40" cy="50" rx="32" ry="16" fill="#3a8040" opacity="0.3"/>
+          <path d="M20 50c0-11 9-20 20-20s20 9 20 20" fill="#c97060" opacity="0.3"/>
+          <path d="M15 50h50" stroke="#c9963c" stroke-width="2"/>
+          <path d="M25 50V36c0-8.3 6.7-15 15-15s15 6.7 15 15v14" stroke="#60b860" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="40" cy="22" r="5" fill="#4a9840" opacity="0.8"/>
+          <path d="M32 42c4-6 12-6 16 0" stroke="#60b860" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+          <path d="M28 50c2-4 6-7 12-7s10 3 12 7" stroke="#60b860" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="m-body-3d">
+        <div class="m-label-3d">Service 05</div>
+        <div class="m-name-3d">Lawns</div>
+        <div class="m-desc-3d">Beautiful open lawns for outdoor weddings, mehendi ceremonies and evening receptions.</div>
+        <div class="card-chips" style="margin-bottom:14px;"><span class="chip rose">Day Event</span><span class="chip rose">Night Event</span><span class="chip silver">Seating</span></div>
+        <button class="m-book-btn-3d" onclick="openBooking('Lawn Booking')"><span>Book Lawn →</span></button>
+      </div>
+    </div>
+
+    <div class="marriage-card-3d reveal">
+      <div class="m-icon-area" style="background:linear-gradient(135deg,rgba(140,120,60,0.08),rgba(0,0,0,0.3));">
+        <svg class="m-icon-3d" viewBox="0 0 80 80" fill="none">
+          <rect x="8" y="38" width="64" height="30" rx="3" fill="#c97060" opacity="0.6"/>
+          <path d="M8 38L40 16l32 22" fill="#b8862e" opacity="0.5"/>
+          <rect x="20" y="44" width="16" height="12" rx="2" fill="rgba(140,200,255,0.4)"/>
+          <rect x="44" y="44" width="16" height="12" rx="2" fill="rgba(140,200,255,0.4)"/>
+          <rect x="30" y="52" width="20" height="16" rx="2" fill="#f0c060" opacity="0.5"/>
+          <path d="M36 40h8v4h-8z" fill="#f0c060" opacity="0.7"/>
+          <path d="M8 38h64" stroke="#c9963c" stroke-width="1.5"/>
+          <ellipse cx="40" cy="72" rx="20" ry="4" fill="rgba(201,150,60,0.15)"/>
+        </svg>
+      </div>
+      <div class="m-body-3d">
+        <div class="m-label-3d">Service 06</div>
+        <div class="m-name-3d">Farm House</div>
+        <div class="m-desc-3d">Private farm houses for exclusive destination events, pre-wedding shoots and celebrations.</div>
+        <div class="card-chips" style="margin-bottom:14px;"><span class="chip rose">Exclusive Access</span><span class="chip silver">Pool Available</span></div>
+        <button class="m-book-btn-3d" onclick="openBooking('Farm House')"><span>Book Farm House →</span></button>
+      </div>
+    </div>
+
+    <div class="marriage-card-3d reveal">
+      <div class="m-icon-area" style="background:linear-gradient(135deg,rgba(180,80,80,0.08),rgba(0,0,0,0.3));">
+        <svg class="m-icon-3d" viewBox="0 0 80 80" fill="none">
+          <ellipse cx="40" cy="50" rx="24" ry="18" fill="#c97060" opacity="0.3" stroke="#c9963c" stroke-width="1.5"/>
+          <path d="M16 50c0 9.9 10.7 18 24 18s24-8.1 24-18" fill="#c97060" opacity="0.5"/>
+          <path d="M24 44l16-16 16 16" stroke="#c9963c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M32 36l8-8 8 8" stroke="#f0c060" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.6"/>
+          <circle cx="40" cy="58" r="4" fill="#f0c060" opacity="0.8"/>
+          <path d="M20 58h40" stroke="#c9963c" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="m-body-3d">
+        <div class="m-label-3d">Service 07</div>
+        <div class="m-name-3d">Utensils for Food</div>
+        <div class="m-desc-3d">Large-scale cooking utensils, vessels and equipment for community feasts and events.</div>
+        <div class="card-chips" style="margin-bottom:14px;"><span class="chip rose">Large Vessels</span><span class="chip rose">Burners</span><span class="chip silver">Delivery</span></div>
+        <button class="m-book-btn-3d" onclick="openBooking('Utensils')"><span>Book Utensils →</span></button>
+      </div>
+    </div>
+
+    <div class="marriage-card-3d reveal">
+      <div class="m-icon-area" style="background:linear-gradient(135deg,rgba(150,60,130,0.08),rgba(0,0,0,0.3));">
+        <svg class="m-icon-3d" viewBox="0 0 80 80" fill="none">
+          <circle cx="40" cy="36" r="20" fill="none" stroke="#c97060" stroke-width="2" opacity="0.5"/>
+          <path d="M28 36c2-8 6-14 12-14s10 6 12 14" fill="none" stroke="#c9963c" stroke-width="2" stroke-linecap="round"/>
+          <path d="M24 40c4-12 8-20 16-20s12 8 16 20" fill="none" stroke="#f0c060" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+          <circle cx="40" cy="36" r="5" fill="#c97060" opacity="0.8"/>
+          <path d="M34 50c2 4 3 8 3 12h6c0-4 1-8 3-12" fill="#c9963c" opacity="0.6"/>
+          <path d="M30 62h20" stroke="#c9963c" stroke-width="2" stroke-linecap="round"/>
+          <path d="M20 56c0-2 2-4 4-4M56 56c0-2-2-4-4-4" stroke="#f0c060" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="m-body-3d">
+        <div class="m-label-3d">Service 08</div>
+        <div class="m-name-3d">Decorations + Decorator</div>
+        <div class="m-desc-3d">Complete decoration with a professional decorator — themes, lighting, floral and stage setup.</div>
+        <div class="card-chips" style="margin-bottom:14px;"><span class="chip rose">Floral</span><span class="chip rose">LED Lights</span><span class="chip rose">Stage</span><span class="chip silver">Custom Theme</span></div>
+        <button class="m-book-btn-3d" onclick="openBooking('Decorations')"><span>Book Decorator →</span></button>
+      </div>
+    </div>
+
+    <div class="marriage-card-3d reveal">
+      <div class="m-icon-area" style="background:linear-gradient(135deg,rgba(80,80,180,0.08),rgba(0,0,0,0.3));">
+        <svg class="m-icon-3d" viewBox="0 0 80 80" fill="none">
+          <path d="M20 56l8-8 6 6 8-12 6 10 8-14" stroke="#c9963c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <rect x="10" y="16" width="60" height="48" rx="4" fill="none" stroke="#c97060" stroke-width="1.5" opacity="0.5"/>
+          <rect x="10" y="16" width="60" height="14" rx="4" fill="#c97060" opacity="0.2"/>
+          <circle cx="22" cy="23" r="3" fill="#c9963c" opacity="0.7"/>
+          <circle cx="34" cy="23" r="3" fill="#f0c060" opacity="0.7"/>
+          <circle cx="46" cy="23" r="3" fill="#c97060" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="m-body-3d">
+        <div class="m-label-3d">Service 09</div>
+        <div class="m-name-3d">Caterers + Waiters</div>
+        <div class="m-desc-3d">Complete package — catering team with dedicated waiters for a seamless event experience.</div>
+        <div class="card-chips" style="margin-bottom:14px;"><span class="chip rose">Complete Package</span><span class="chip silver">Best Value</span></div>
+        <button class="m-book-btn-3d" onclick="openBooking('Caterers + Waiters Package')"><span>Book Package →</span></button>
+      </div>
+    </div>
+
+    <div class="marriage-card-3d reveal">
+      <div class="m-icon-area" style="background:linear-gradient(135deg,rgba(150,120,40,0.08),rgba(0,0,0,0.3));">
+        <svg class="m-icon-3d" viewBox="0 0 80 80" fill="none">
+          <polygon points="40,10 46,28 66,28 50,40 56,58 40,46 24,58 30,40 14,28 34,28" fill="#c9963c" opacity="0.7"/>
+          <polygon points="40,18 44,30 56,30 47,38 51,50 40,42 29,50 33,38 24,30 36,30" fill="#f0c060" opacity="0.5"/>
+          <circle cx="40" cy="38" r="5" fill="#c97060" opacity="0.9"/>
+          <circle cx="40" cy="38" r="2" fill="#f0c060"/>
+        </svg>
+      </div>
+      <div class="m-body-3d">
+        <div class="m-label-3d">Service 10</div>
+        <div class="m-name-3d">Event Organizers</div>
+        <div class="m-desc-3d">End-to-end event management professionals who handle everything from planning to execution.</div>
+        <div class="card-chips" style="margin-bottom:14px;"><span class="chip rose">Full Management</span><span class="chip rose">Day Coordination</span><span class="chip silver">Budget Plans</span></div>
+        <button class="m-book-btn-3d" onclick="openBooking('Event Organizers')"><span>Book Organizer →</span></button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ BROWSE LISTINGS ══ -->
+<section class="section listings-bg" id="browse">
+  <div class="section-header-row reveal">
+    <div>
+      <div class="section-eyebrow">Live Listings</div>
+      <h2 class="section-title">Browse <span>Available Services</span></h2>
+      <p class="section-desc">Real listings from verified service owners near you — filter, find, and book instantly.</p>
+    </div>
+    <div class="section-num">04</div>
+  </div>
+  <div class="filter-row reveal">
+    <button class="filter-pill active" onclick="filterListings(this,'all')">All Services</button>
+    <button class="filter-pill" onclick="filterListings(this,'labour')">Labour</button>
+    <button class="filter-pill" onclick="filterListings(this,'vehicle')">Vehicles</button>
+    <button class="filter-pill" onclick="filterListings(this,'marriage')">Marriage</button>
+  </div>
+  <div class="listings-grid-3d" id="listingsGrid"></div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="section section-inner-bg" id="how">
+  <div class="section-header-row reveal">
+    <div>
+      <div class="section-eyebrow">The Process</div>
+      <h2 class="section-title">How It <span>Works</span></h2>
+    </div>
+    <div class="section-num">05</div>
+  </div>
+  <div class="how-grid reveal">
+    <div class="how-step">
+      <div class="step-num">01</div>
+      <svg class="step-icon-3d" viewBox="0 0 56 56" fill="none"><circle cx="24" cy="24" r="14" stroke="#c9963c" stroke-width="2" fill="none"/><path d="M34 34l12 12" stroke="#f0c060" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="24" r="6" fill="rgba(201,150,60,0.2)"/></svg>
+      <div class="step-title">Browse Services</div>
+      <div class="step-desc">Explore our full range of labour, vehicles and wedding services available near your city.</div>
+    </div>
+    <div class="how-step">
+      <div class="step-num">02</div>
+      <svg class="step-icon-3d" viewBox="0 0 56 56" fill="none"><rect x="10" y="8" width="36" height="40" rx="4" stroke="#c9963c" stroke-width="2" fill="none"/><path d="M18 20h20M18 28h20M18 36h14" stroke="#f0c060" stroke-width="1.5" stroke-linecap="round"/><rect x="18" y="4" width="4" height="8" rx="2" fill="#c9963c"/><rect x="34" y="4" width="4" height="8" rx="2" fill="#c9963c"/></svg>
+      <div class="step-title">Pick &amp; Schedule</div>
+      <div class="step-desc">Choose your service type, preferred time — half day, full day, hourly or per event.</div>
+    </div>
+    <div class="how-step">
+      <div class="step-num">03</div>
+      <svg class="step-icon-3d" viewBox="0 0 56 56" fill="none"><rect x="8" y="14" width="40" height="28" rx="4" stroke="#c9963c" stroke-width="2" fill="none"/><path d="M8 22h40" stroke="#c9963c" stroke-width="1.5" opacity="0.5"/><rect x="14" y="28" width="14" height="8" rx="2" fill="rgba(201,150,60,0.4)"/><path d="M34 30h8M34 34h6" stroke="#f0c060" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/></svg>
+      <div class="step-title">Pay Securely</div>
+      <div class="step-desc">Pay online via Razorpay, Paytm or Stripe — 100% secure checkout with instant confirmation.</div>
+    </div>
+    <div class="how-step">
+      <div class="step-num">04</div>
+      <svg class="step-icon-3d" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="20" stroke="#c9963c" stroke-width="2" fill="none"/><path d="M18 28l8 8 14-14" stroke="#f0c060" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="step-title">Confirm Booking</div>
+      <div class="step-desc">Get instant confirmation with professional details and estimated arrival time to your location.</div>
+    </div>
+    <div class="how-step">
+      <div class="step-num">05</div>
+      <svg class="step-icon-3d" viewBox="0 0 56 56" fill="none"><polygon points="28,6 33,20 48,20 36,30 41,44 28,34 15,44 20,30 8,20 23,20" fill="rgba(201,150,60,0.4)" stroke="#c9963c" stroke-width="1.5"/><circle cx="28" cy="28" r="5" fill="#f0c060" opacity="0.8"/></svg>
+      <div class="step-title">Rate &amp; Review</div>
+      <div class="step-desc">After service, rate your experience and help the community make better, informed decisions.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ OWNER CTA ══ -->
+<div class="owner-cta-section">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <div class="eyebrow">For Service Owners</div>
+      <h2>Got a service?<br><span>Start earning today.</span></h2>
+      <p>Register as an owner, list your services or vehicles, set your pricing, and start receiving bookings. No setup fee. Earn from Day 1.</p>
+    </div>
+    <div class="cta-actions">
+      <button class="btn-hero-primary" onclick="openModal('registerModal')">Register as Owner →</button>
+      <a href="owner_login.php" class="btn-hero-outline">Owner Dashboard</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo-3d">OR — ON RENT</div>
+      <p class="footer-tagline">India's premium rental marketplace for labour, vehicles &amp; wedding services — delivered to your door.</p>
+      <div class="footer-contact">
+        <span>✦ support@oronrent.in</span>
+        <span>✦ +91 98765 43210</span>
+        <span>✦ Pune, Maharashtra</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Labour</h4>
+      <ul>
+        <li><a href="#">General Labour</a></li><li><a href="#">Electrician</a></li>
+        <li><a href="#">Mechanic</a></li><li><a href="#">Plumber</a></li>
+        <li><a href="#">Painter</a></li><li><a href="#">Chef</a></li><li><a href="#">Driver</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Vehicles</h4>
+      <ul>
+        <li><a href="#">Cars</a></li><li><a href="#">Bikes</a></li>
+        <li><a href="#">Bus</a></li><li><a href="#">Delivery Trucks</a></li>
+        <li><a href="#">Construction</a></li><li><a href="#">Dump Trucks</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Marriage</h4>
+      <ul>
+        <li><a href="#">Caterers</a></li><li><a href="#">Waiters</a></li>
+        <li><a href="#">Marriage Halls</a></li><li><a href="#">Lawns &amp; Farm House</a></li>
+        <li><a href="#">Decorations</a></li><li><a href="#">Event Organizers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About OR</a></li><li><a href="#" onclick="openModal('registerModal');return false;">List Your Service</a></li>
+        <li><a href="#">Partner With Us</a></li><li><a href="#">Support</a></li>
+        <li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 <span>OR — On Rent</span>. All rights reserved. Crafted with precision.</p>
+    <div class="social-btns">
+      <a class="social-btn-3d" href="#">f</a>
+      <a class="social-btn-3d" href="#">in</a>
+      <a class="social-btn-3d" href="#">tw</a>
+      <a class="social-btn-3d" href="#">ig</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a class="wa-btn" href="https://wa.me/919876543210" target="_blank">💬</a>
+
+<!-- ══ LOGIN MODAL ══ -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal-3d">
+    <button class="modal-close" onclick="closeModal('loginModal')">✕</button>
+    <div class="modal-gold-line"></div>
+    <div class="modal-title">Welcome Back</div>
+    <p class="modal-sub">Sign in to your OR — On Rent account.</p>
+    <form onsubmit="handleLogin(event)">
+      <div class="form-g"><label class="form-lbl">Email Address</label><input class="form-inp" type="email" placeholder="your@email.com" required/></div>
+      <div class="form-g"><label class="form-lbl">Password</label><input class="form-inp" type="password" placeholder="••••••••" required/></div>
+      <button class="modal-submit" type="submit">Sign In ✦</button>
+    </form>
+    <div class="modal-toggle">New to OR? <a href="#" onclick="switchModal('loginModal','registerModal')">Create Account</a></div>
+    <div class="modal-toggle" style="margin-top:8px;"><a href="owner_login.php" style="color:var(--silver);">Owner Portal →</a></div>
+  </div>
+</div>
+
+<!-- ══ REGISTER MODAL ══ -->
+<div class="modal-overlay" id="registerModal">
+  <div class="modal-3d">
+    <button class="modal-close" onclick="closeModal('registerModal')">✕</button>
+    <div class="modal-gold-line"></div>
+    <div class="modal-title">List Your Service</div>
+    <p class="modal-sub">Register as an owner and start earning today.</p>
+    <form onsubmit="handleRegister(event)">
+      <div class="form-row-2">
+        <div class="form-g"><label class="form-lbl">Full Name</label><input class="form-inp" type="text" placeholder="Your name" required/></div>
+        <div class="form-g"><label class="form-lbl">Mobile Number</label><input class="form-inp" type="tel" placeholder="+91 XXXXXXXXXX" required/></div>
+      </div>
+      <div class="form-g"><label class="form-lbl">Email Address</label><input class="form-inp" type="email" placeholder="your@email.com" required/></div>
+      <div class="form-row-2">
+        <div class="form-g"><label class="form-lbl">City</label><select class="form-inp" style="cursor:none;"><option value="">Select City</option><option>Pune</option><option>Mumbai</option><option>Nashik</option><option>Nagpur</option></select></div>
+        <div class="form-g"><label class="form-lbl">Area / Pincode</label><input class="form-inp" type="text" placeholder="Area or PIN" required/></div>
+      </div>
+      <div class="form-g"><label class="form-lbl">Password</label><input class="form-inp" type="password" placeholder="Create password" required/></div>
+      <button class="modal-submit" type="submit">Create Account ✦</button>
+    </form>
+    <div class="modal-toggle">Already registered? <a href="#" onclick="switchModal('registerModal','loginModal')">Sign In</a></div>
+  </div>
+</div>
+
+<!-- ══ BOOKING MODAL ══ -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal-3d">
+    <button class="modal-close" onclick="closeModal('bookingModal')">✕</button>
+    <div class="modal-gold-line"></div>
+    <div class="modal-title">Reserve Service</div>
+    <p class="modal-sub" id="bookingModalSub">Fill details to confirm your booking.</p>
+    <div style="background:rgba(201,150,60,0.06);border:1px solid rgba(201,150,60,0.15);border-radius:12px;padding:14px 18px;margin-bottom:22px;">
+      <div style="font-family:'Cinzel',serif;font-weight:700;font-size:0.95rem;color:var(--platinum);" id="bookingModalTitle">Service</div>
+      <div style="font-size:0.75rem;color:var(--mist);margin-top:4px;">Complete your reservation details below</div>
+    </div>
+    <form onsubmit="handleBooking(event)">
+      <div class="form-row-2">
+        <div class="form-g"><label class="form-lbl">Your Name</label><input class="form-inp" type="text" placeholder="Full name" required/></div>
+        <div class="form-g"><label class="form-lbl">Mobile</label><input class="form-inp" type="tel" placeholder="+91 XXXXXXXXXX" required/></div>
+      </div>
+      <div class="form-row-2">
+        <div class="form-g"><label class="form-lbl">Booking Date</label><input class="form-inp" type="date" required/></div>
+        <div class="form-g"><label class="form-lbl">Duration</label><select class="form-inp" style="cursor:none;"><option>Half Day (4 hrs)</option><option>Full Day (8 hrs)</option><option>Hourly</option><option>Multi-Day</option></select></div>
+      </div>
+      <div class="form-g"><label class="form-lbl">Service Location</label><input class="form-inp" type="text" placeholder="Your address" required/></div>
+      <div class="form-g">
+        <label class="form-lbl">Payment Method</label>
+        <div class="payment-opts">
+          <div class="pay-opt-3d sel" onclick="selPay(this)"><span class="pay-icon">💳</span>Razorpay</div>
+          <div class="pay-opt-3d" onclick="selPay(this)"><span class="pay-icon">📱</span>Paytm</div>
+          <div class="pay-opt-3d" onclick="selPay(this)"><span class="pay-icon">🌐</span>Stripe</div>
+        </div>
+      </div>
+      <button class="modal-submit" type="submit">Confirm &amp; Pay ✦</button>
+    </form>
+  </div>
+</div>
+
+<script>
+/* ══ PARTICLES ══ */
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+function resizeCanvas() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+resizeCanvas(); window.addEventListener('resize', resizeCanvas);
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * W; this.y = Math.random() * H;
+    this.size = Math.random() * 1.5 + 0.3;
+    this.opacity = Math.random() * 0.4 + 0.05;
+    this.speedX = (Math.random() - 0.5) * 0.3;
+    this.speedY = -Math.random() * 0.4 - 0.1;
+    this.life = 1; this.decay = Math.random() * 0.002 + 0.001;
+    this.gold = Math.random() > 0.7;
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    if (this.gold) {
+      ctx.fillStyle = `rgba(201,150,60,${this.opacity * this.life})`;
+    } else {
+      ctx.fillStyle = `rgba(176,168,200,${this.opacity * this.life * 0.4})`;
+    }
+    ctx.fill();
+  }
+  update() {
+    this.x += this.speedX; this.y += this.speedY;
+    this.life -= this.decay;
+    if (this.life <= 0 || this.y < 0) this.reset();
+  }
+}
+for (let i = 0; i < 120; i++) { const p = new Particle(); p.y = Math.random() * H; particles.push(p); }
+function animParticles() {
+  ctx.clearRect(0, 0, W, H);
+  particles.forEach(p => { p.update(); p.draw(); });
+  requestAnimationFrame(animParticles);
+}
+animParticles();
+
+/* ══ CURSOR ══ */
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; });
+function animCursor() {
+  rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(animCursor);
+}
+animCursor();
+document.querySelectorAll('button, a, .service-3d, .vehicle-3d-card, .marriage-card-3d, .listing-3d').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.style.width = '20px'; cursor.style.height = '20px'; ring.style.width = '50px'; ring.style.height = '50px'; ring.style.borderColor = 'rgba(201,150,60,0.8)'; });
+  el.addEventListener('mouseleave', () => { cursor.style.width = '12px'; cursor.style.height = '12px'; ring.style.width = '36px'; ring.style.height = '36px'; ring.style.borderColor = 'rgba(201,150,60,0.5)'; });
+});
+
+/* ══ 3D CARD TILT ══ */
+document.querySelectorAll('.service-3d').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.querySelector('.service-3d-inner').style.transform =
+      `rotateX(${-y * 8}deg) rotateY(${x * 8}deg) translateY(-8px) translateZ(20px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.querySelector('.service-3d-inner').style.transform = '';
+  });
+});
+
+/* ══ NAV SCROLL ══ */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+/* ══ SCROLL REVEAL ══ */
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 70);
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+/* ══ LISTINGS ══ */
+const listings = [
+  {id:1,cat:'labour',emoji:'⚡',title:'Certified Electrician',sub:'Rajesh Kumar · Pimpri',loc:'📍 Pimpri, Pune',price:'₹450',per:'/half day',rating:'4.8',rev:32},
+  {id:2,cat:'labour',emoji:'🔧',title:'Expert Mechanic',sub:'Suresh Auto Works',loc:'📍 Chinchwad, Pune',price:'₹600',per:'/visit',rating:'4.6',rev:18},
+  {id:3,cat:'vehicle',emoji:'🚗',title:'Honda City with Driver',sub:'AC Sedan · Premium',loc:'📍 Wakad, Pune',price:'₹1,200',per:'/day',rating:'4.9',rev:54},
+  {id:4,cat:'vehicle',emoji:'🚌',title:'AC Mini Bus 20 Seater',sub:'Group Travel',loc:'📍 Kothrud, Pune',price:'₹3,500',per:'/day',rating:'4.7',rev:21},
+  {id:5,cat:'marriage',emoji:'🍽️',title:'Sharma Caterers',sub:'Veg &amp; Non-Veg',loc:'📍 Nigdi, Pune',price:'₹180',per:'/plate',rating:'4.9',rev:87},
+  {id:6,cat:'marriage',emoji:'💐',title:'Dream Decor Studio',sub:'Full Event Decoration',loc:'📍 Akurdi, Pune',price:'₹15,000',per:'/event',rating:'4.8',rev:43},
+  {id:7,cat:'labour',emoji:'🧹',title:'CleanStar Home Cleaning',sub:'Professional Team',loc:'📍 Baner, Pune',price:'₹350',per:'/visit',rating:'4.5',rev:29},
+  {id:8,cat:'vehicle',emoji:'🚛',title:'Delivery Truck 407',sub:'With Driver · Fuel Incl.',loc:'📍 Bhosari, Pune',price:'₹2,000',per:'/day',rating:'4.4',rev:15},
+  {id:9,cat:'marriage',emoji:'🏛️',title:'Lotus Marriage Hall',sub:'500 Capacity · AC',loc:'📍 Pimpri, Pune',price:'₹25,000',per:'/day',rating:'4.7',rev:62},
+  {id:10,cat:'labour',emoji:'👨‍🍳',title:'Home Chef Anita D.',sub:'Multi-Cuisine Expert',loc:'📍 Wakad, Pune',price:'₹800',per:'/day',rating:'4.9',rev:41},
+  {id:11,cat:'marriage',emoji:'🌿',title:'Green Garden Lawn',sub:'300 Guests Capacity',loc:'📍 Ravet, Pune',price:'₹18,000',per:'/event',rating:'4.6',rev:33},
+  {id:12,cat:'vehicle',emoji:'🏍️',title:'Splendor Bike + Driver',sub:'City Rides',loc:'📍 Moshi, Pune',price:'₹300',per:'/day',rating:'4.3',rev:11},
+];
+function renderListings(filter='all') {
+  const grid = document.getElementById('listingsGrid');
+  const data = filter === 'all' ? listings : listings.filter(l => l.cat === filter);
+  grid.innerHTML = data.map(l => `
+    <div class="listing-3d reveal">
+      <div class="listing-thumb-3d"><div class="listing-thumb-emoji">${l.emoji}</div></div>
+      <div class="listing-body-3d">
+        <div class="listing-cat-3d">${l.cat.toUpperCase()}</div>
+        <div class="listing-name-3d">${l.title}</div>
+        <div style="font-size:0.75rem;color:var(--mist);margin-bottom:4px;">${l.sub}</div>
+        <div class="listing-loc-3d">${l.loc}</div>
+        <div><span class="listing-price-3d">${l.price}</span><span style="font-size:0.7rem;color:var(--mist);font-family:'Raleway',sans-serif;margin-left:4px;">${l.per}</span></div>
+        <div class="listing-footer-3d">
+          <div class="listing-rating-3d">✦ ${l.rating} <span style="color:var(--mist);font-size:0.68rem;">(${l.rev})</span></div>
+          <button class="listing-book-btn-3d" onclick="openBooking('${l.title}')">Book Now</button>
+        </div>
+      </div>
+    </div>`).join('');
+  document.querySelectorAll('.listing-3d').forEach(el => {
+    setTimeout(() => el.classList.add('visible'), 50);
+    revealObs.observe(el);
+  });
+}
+function filterListings(btn, cat) {
+  document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderListings(cat);
+}
+
+/* ══ MODALS ══ */
+function openModal(id) { document.getElementById(id).classList.add('active'); document.body.style.overflow='hidden'; }
+function closeModal(id) { document.getElementById(id).classList.remove('active'); document.body.style.overflow=''; }
+function switchModal(a, b) { closeModal(a); setTimeout(() => openModal(b), 200); }
+document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', e => { if(e.target===o) closeModal(o.id); }));
+function openBooking(name) {
+  document.getElementById('bookingModalTitle').textContent = name;
+  document.getElementById('bookingModalSub').textContent = 'Reserve: ' + name;
+  openModal('bookingModal');
+}
+function selPay(el) { document.querySelectorAll('.pay-opt-3d').forEach(o => o.classList.remove('sel')); el.classList.add('sel'); }
+function handleLogin(e) { e.preventDefault(); alert('✦ Login successful! Redirecting...'); closeModal('loginModal'); }
+function handleRegister(e) { e.preventDefault(); alert('✦ Account created! You can now list your services.'); closeModal('registerModal'); }
+function handleBooking(e) {
+  e.preventDefault();
+  alert('✦ Booking Confirmed!\n"' + document.getElementById('bookingModalTitle').textContent + '"\n\nPayment link sent to your mobile. Our team will contact you shortly.');
+  closeModal('bookingModal');
+}
+
+renderListings();
+</script>
+</body>
+</html>
